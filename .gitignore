@@ -39,5 +39,7 @@ luac.out
 *.x86_64
 *.hex
 
-# macOS
+# macOS, nvim and fish stuff
 .DS_STORE
+fish/fish_variables
+.nvim_backup/
