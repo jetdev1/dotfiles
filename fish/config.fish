@@ -2,6 +2,9 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+# Change default editor to nvim
+set -gx EDITOR nvim
+
 # Terminal operations
 alias ll="exa -l --icons -a --git"
 alias llt="exa -T --icons"
