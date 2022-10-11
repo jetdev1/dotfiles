@@ -10,10 +10,10 @@ map('n', '<leader>th', '<cmd>NvimTreeCollapse<cr>')       -- Collapse folders
 -- [[ Editor ]]
 map('n', '<leader>sa', 'gg<S-v>G')                        -- Select all
 map('n', '<leader>cs', "<cmd>let @/=''<cr>")              -- Clear search highlights
+map('n', '<leader>fp', '`[v`]')
 
 map('n', '<leader>fm', '<cmd>tabnew ~/.config/nvim/lua/jittery/keys.lua<CR>')  -- Open keymap config file
 map('n', '<leader>fs', '<cmd>w<cr>')                      -- Save file
-map('n', '<leader>fl', '<cmd>luafile %<cr>')              -- Rerun luafile 
 map('n', '<leader>fr', '<cmd>w<cr><cmd>luafile %<cr>')    -- Refresh lua file
 map('n', '<leader>fa', '<cmd>wqa<CR>')                    -- Save files and quit neovim
 map('n', '<leader>fd', '<cmd>q!<CR>')                     -- Discard changes
@@ -23,12 +23,18 @@ map('n', '<leader>fd', '<cmd>q!<CR>')                     -- Discard changes
 map('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files"..
     "({hidden=true, search_dirs={'~/Projects', '~/.config'}, find_command={'fd'}})<CR>")
 map('n', '<leader>fk', '<CMD>Telescope keymaps<CR>')
+map('n', '<leader>fb', '<CMD>Telescope file_browser<CR>')
 
 
 -- [[ Window ]]
 map('n', '<leader>vs', '<cmd>vsplit<cr>')                 -- Vertical split 
 map('n', '<leader>hs', '<cmd>split<cr>')                  -- Horizontal split
--- Resize split
+map('n', '<A-]>', '<C-w>>')
+map('n', '<A-[>', '<C-w><')
+
+
+-- [[ Markdown ]]
+map('n', '<leader>mp', '<cmd>MarkdownPreview<CR>')
 
 
 -- [[ barbar ]]
@@ -59,6 +65,7 @@ map('n', '<leader>0', '<Cmd>BufferLast<CR>', opts)
 
 -- [[ Diagnostics]]
 map('n', '<leader>dr', '<cmd>lua vim.lsp.buf.rename()<CR>')  -- Rename variable
+map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
 vim.g.diagnostics_active = true                              -- Function to toggle diagnostics
 function _G.toggle_diagnostics()

@@ -4,11 +4,11 @@ require'lspconfig'.pyright.setup{
   capabilities = capabilities,
   on_attach = function()
     -- Set K to lsp hover function in normal mode for current buffer.
---    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
-    vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = 0 })
-    vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = 0 })
-  end, 
+    vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { buffer = 0 })
+    -- vim.keymap.set("n", "gd", '<cmd>Lspsaga preview_definition<CR>', { buffer = 0 })
+    vim.keymap.set("n", "<C-j>", '<cmd>Lspsaga diagnostic_jump_next<CR>', { buffer = 0 })
+    vim.keymap.set("n", "<C-k>", '<cmd>Lspsaga diagnostic_jump_prev<CR>', { buffer = 0 })
+  end,
 }
 
 require'lspconfig'.sumneko_lua.setup {
@@ -38,21 +38,23 @@ require'lspconfig'.sumneko_lua.setup {
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
     vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = 0 })
     vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = 0 })
-  end, 
+  end,
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
        vim.lsp.diagnostic.on_publish_diagnostics, {
          underline = true,
          virtual_text = false,
-         signs = true,
-         -- Use a function to dynamically turn signs off
-         -- and on, using buffer local variables
-         signs = function(namespace, bufnr)
-           return vim.b[bufnr].show_signs == true
-         end
+         signs = true
        }
      )
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 
 -- [[ Setup nvim-cmp ]]
 vim.opt.completeopt = { "menu", "menuone", "noselect" }

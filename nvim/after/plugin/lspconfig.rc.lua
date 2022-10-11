@@ -1,13 +1,44 @@
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local protocol = require('vim.lsp.protocol')
+protocol.CompletionItemKind = {
+  '', -- Text
+  '', -- Method
+  '', -- Function
+  '', -- Constructor
+  '', -- Field
+  '', -- Variable
+  '', -- Class
+  'ﰮ', -- Interface
+  '', -- Module
+  '', -- Property
+  '', -- Unit
+  '', -- Value
+  '', -- Enum
+  '', -- Keyword
+  '﬌', -- Snippet
+  '', -- Color
+  '', -- File
+  '', -- Reference
+  '', -- Folder
+  '', -- EnumMember
+  '', -- Constant
+  '', -- Struct
+  '', -- Event
+  'ﬦ', -- Operator
+  '', -- TypeParameter
+}
 
 require'lspconfig'.pyright.setup{
   capabilities = capabilities,
   on_attach = function()
-    -- Set K to lsp hover function in normal mode for current buffer.
-    vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { buffer = 0 })
-    vim.keymap.set("n", "gd", '<cmd>Lspsaga preview_definition<CR>', { buffer = 0 })
-    vim.keymap.set("n", "<C-j>", '<cmd>Lspsaga diagnostic_jump_next<CR>', { buffer = 0 })
-    vim.keymap.set("n", "<C-k>", '<cmd>Lspsaga diagnostic_jump_prev<CR>', { buffer = 0 })
+  end,
+}
+
+require'lspconfig'.tsserver.setup {
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" },
+  capabilities = capabilities,
+  on_attach = function()
   end,
 }
 
@@ -34,10 +65,6 @@ require'lspconfig'.sumneko_lua.setup {
   },
   capabilities = capabilities,
   on_attach = function()
-    -- Set K to lsp hover function in normal mode for current buffer.
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
-    vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = 0 })
-    vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = 0 })
   end,
 }
 
