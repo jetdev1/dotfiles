@@ -1,13 +1,7 @@
 -- [[ opts.lua ]]
 
+vim.cmd [[filetype plugin on]]    -- Enable filetype plugins
 local opt = vim.opt              -- Reduce code to type
---function genlist()               -- Create string of columns to highlight
---    local t = {  }
---    for i=80,255,1 do
---	t[#t+1] = tostring(i)
---    end
---    return table.concat(t, ",")
---end
 
 -- [[ Encoding ]]
 vim.scriptendcoding = 'utf-8'    -- Specifies character endcoding used in the script.
@@ -15,12 +9,12 @@ vim.opt.encoding = 'utf-8'       -- Specifies output encoding of the terminal.
 vim.opt.fileencoding = 'utf-8'   -- Specifies encoding of file that is written.
 
 -- [[ Workspace ]]
--- opt.colorcolumn = genlist()   -- Change the background colour beyond char #80
--- vim.cmd[[highlight ColorColumn ctermbg=0 guibg=lightgrey]]
 opt.title = true                 -- Title of window will be set to filename
 opt.number = true                -- Show line numbers
+opt.showmode = false             -- Hide mode indicator
+opt.relativenumber = true        -- Use relative line numbers
 opt.scrolloff = 10               -- Minimum lines shown beneath cursor
-opt.signcolumn = "yes"            -- Hide the sign column
+opt.signcolumn = "yes"           -- Show the sign column
 opt.lazyredraw = true            -- Enable lazy redraw
 opt.termguicolors = true         -- Enable true color in the terminal
 opt.background = 'dark'          -- Use dark background
@@ -55,22 +49,8 @@ opt.smartcase = true             -- Enable case-sensitivity when capital letters
 vim.opt.path:append { '**' }     -- Search into subdirectories
 
 -- [[ Mouse ]]
-opt.mouse = 'vn'                  -- Limit mouse support to visual mode
+opt.mouse = 'vn'                  -- Limit mouse support to visual, normal mode.
 
 -- [[ Clipboard ]]
--- Clipboard support is not enabled by default
--- local is_unix = vim.fn.has("macunix") == 1
--- local is_win = vim.fn.has("win32") == 1
--- 
--- if is_unix then
--- 	opt.clipboard:apppend { 'unnamedplus' }
---     print("unix detected.")
--- end
--- if is_win then
--- -- opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
---     opt.clipboard = 'unnamedplus'
---     print("windows detected.")
--- end
-
-opt.clipboard = 'unnamedplus'
+opt.clipboard = 'unnamedplus'     -- For Unix. Use clip.exe etc for WSL.
 
