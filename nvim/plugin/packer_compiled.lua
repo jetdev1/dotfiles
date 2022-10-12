@@ -11,7 +11,7 @@ local no_errors, error_msg = pcall(function()
 
   local time
   local profile_info
-  local should_profile = true
+  local should_profile = false
   if should_profile then
     local hrtime = vim.loop.hrtime
     profile_info = {}
@@ -210,6 +210,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/limjit/.local/share/nvim/site/pack/packer/start/vim-compilers",
     url = "https://github.com/konfekt/vim-compilers"
+  },
+  ["vim-python-pep8-indent"] = {
+    loaded = true,
+    path = "/Users/limjit/.local/share/nvim/site/pack/packer/start/vim-python-pep8-indent",
+    url = "https://github.com/Vimjas/vim-python-pep8-indent"
   },
   ["vim-startuptime"] = {
     loaded = true,

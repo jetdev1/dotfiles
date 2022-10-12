@@ -48,7 +48,7 @@ packer.startup(function(use)
     -- [[ Telescope ]]
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope-fzf-native.nvim'
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use 'nvim-telescope/telescope-file-browser.nvim'
 
     -- [[ Editor ]]

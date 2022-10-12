@@ -12,8 +12,9 @@ require('telescope').setup {
         }
     },
     defaults = {
-        file_ignore_patterns = {"^.git/", "^venv/", "^.nvim_backup/"}
+        file_ignore_patterns = {".git/.*", "venv/.*", ".nvim_backup/.*"}
     }
 }
 
-require("telescope").load_extension "file_browser"
+require("telescope").load_extension("file_browser")
+require("telescope").load_extension("fzf")
