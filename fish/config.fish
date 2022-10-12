@@ -14,6 +14,7 @@ alias rmf="rm -rf"
 # Coding stuff
 alias py="python3"
 alias pyt="pytest"
+alias tsn="ts-node"
 alias nv="nvim"
 alias prac="cd ~/Projects/Practice && source venv/bin/activate.fish"
 alias ve="source venv/bin/activate.fish"
