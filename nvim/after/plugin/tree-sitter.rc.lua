@@ -12,6 +12,8 @@ ts.setup {
   },
   ensure_installed = {
     "python",
+    "typescript",
+    "javascript",
     "toml",
     "fish",
     "json",
