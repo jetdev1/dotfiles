@@ -43,3 +43,4 @@ luac.out
 .DS_STORE
 fish/fish_variables
 .nvim_backup/
+gh/
